@@ -595,15 +595,17 @@ Parameter:  struct{
             top scroll: area_fixed = 0; area_scroll < g_vgm_mux;
             central scroll: area_fixed + area_scroll < g_vgm_mux;
             bottom scroll: area_fixed + area_scroll = g_vgm_mux;
-
- whole scroll: 
+whole scroll: 
 	vgm_vroll_t v_scroll = {0, 0, 48, 8, 10}; //8: char occupy 8 lines
 *********************************************************************************/
 void vgm_vertical_scroll(vgm_vroll_t *v_scroll)
 {
-    uint8_t i;
+  uint8_t i;
 	uint32_t j;
 
+	uint16_print(g_vgm_mux);
+	uint16_print(v_scroll->area_fixed);
+	uint16_print(v_scroll->area_scroll);
 	if((v_scroll->area_fixed+v_scroll->area_scroll) > g_vgm_mux)
 	{
 		DEBUG_PRINT("vscroll fixed+scroll error\r\n");
@@ -726,16 +728,14 @@ Parameter:
 *********************************************************************************/
 void vgm_fade_in(void)
 {
-    uint8_t i;
+    uint16_t i;
 
-	vgm_set_display_on_off(SET_DISPLAY_ON);
+	//vgm_set_display_on_off(SET_DISPLAY_ON);
 
 	for(i=0; i<=(VGM_BRIGHTNESS); i++)
 	{
 		vgm_set_contrast(i);
-		nrf_delay_us(200);
-		nrf_delay_us(200);
-		nrf_delay_us(200);
+		nrf_delay_ms(10);
 	}
 }
 

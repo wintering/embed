@@ -170,7 +170,7 @@ typedef struct{
     uint8_t page_end;
     uint8_t interval;
     uint8_t offset;
-	uint32_t time_delay;
+		uint32_t time_delay;
 }vgm_scroll_t;
 
 void vgm_set_addr_mode(uint8_t addr_mode);
